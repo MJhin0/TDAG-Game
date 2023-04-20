@@ -31,8 +31,6 @@ public class PlayerController : MonoBehaviour
 
         rBody.position = rBody.position + new Vector2(horizontalIn, verticalIn) * speed * Time.fixedDeltaTime;
 
-        
-
     }
 
     void Update(){
