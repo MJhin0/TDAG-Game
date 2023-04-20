@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rBody;
 
+    public ProjectileBehavior bullet;
+    public Transform launchOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +31,14 @@ public class PlayerController : MonoBehaviour
 
         rBody.position = rBody.position + new Vector2(horizontalIn, verticalIn) * speed * Time.fixedDeltaTime;
 
+        
+
     }
+
+    void Update(){
+        if(Input.GetButtonDown("Fire1")){
+            Instantiate(bullet, launchOffset.position, transform.rotation);
+        }
+    }
+    
 }
