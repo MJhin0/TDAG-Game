@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
 
     void Update(){
         if(Input.GetButtonDown("Fire1")){
-            Instantiate(bullet, launchOffset.position, transform.rotation);
+            Instantiate(bullet, launchOffset.position, transform.rotation * Quaternion.Euler(0, 0, -90));
         }
     }
-    
+
 }
