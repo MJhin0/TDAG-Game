@@ -226,10 +226,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 3
   speed: 2
-  distanceToShoot: 6
   distanceToStop: 3
-  fireRate: 0.5
-  firingPoint: {fileID: 0}
 --- !u!61 &480251769
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -855,7 +852,6 @@ GameObject:
   - component: {fileID: 1653427994}
   - component: {fileID: 1653427993}
   - component: {fileID: 1653427992}
-  - component: {fileID: 1653427996}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1034,16 +1030,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 31.795252, y: 3.3813763}
   m_EdgeRadius: 0
---- !u!114 &1653427996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653427989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfff87322c5b541699ee71730f8565a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}

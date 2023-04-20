@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour
         float horizontalIn = Input.GetAxis("Horizontal");
         float verticalIn = Input.GetAxis("Vertical");
 
-        //rBody.AddForce(new Vector2(horizontalIn, verticalIn) * speed);
+        //Rotate towards mouse
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+
         rBody.position = rBody.position + new Vector2(horizontalIn, verticalIn) * speed * Time.fixedDeltaTime;
 
     }
