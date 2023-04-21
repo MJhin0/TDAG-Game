@@ -8,10 +8,14 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rBody;
 
+
+    public ProjectileBehavior bullet;
+    public Transform launchOffset;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Able to controller UFO's Rigidbody
+        // Able to controller UFO's Rigidbody
         rBody = GetComponent<Rigidbody2D>();
     }
 
@@ -22,8 +26,18 @@ public class PlayerController : MonoBehaviour
         float horizontalIn = Input.GetAxis("Horizontal");
         float verticalIn = Input.GetAxis("Vertical");
 
-        //rBody.AddForce(new Vector2(horizontalIn, verticalIn) * speed);
+        //Rotate towards mouse
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+
         rBody.position = rBody.position + new Vector2(horizontalIn, verticalIn) * speed * Time.fixedDeltaTime;
 
     }
+
+    void Update(){
+        if(Input.GetButtonDown("Fire1")){
+            Instantiate(bullet, launchOffset.position, transform.rotation * Quaternion.Euler(0, 0, -90));
+        }
+    }
+
 }
