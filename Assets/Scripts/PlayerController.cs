@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float invincibilityTime = 2.5f;
 
     // constant damage taken from enemy collision
-    const float damageFromEnemy = 20f;
+    const float damageFromEnemy = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
         if(health <= 0f) {
           // TODO: handle player death
           Destroy(gameObject);
+          SceneManager.LoadScene(2);
         }
 
         // self destruct the enemy
