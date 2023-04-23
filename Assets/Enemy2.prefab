@@ -184,4 +184,4 @@ MonoBehaviour:
   distanceToStop: 3
   distanceToShoot: 5
   fireRate: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 391159395145778618, guid: 82648debb6cde4d028e693a52b7406bf, type: 3}
