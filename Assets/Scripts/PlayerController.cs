@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         // Able to controller UFO's Rigidbody
         rBody = GetComponent<Rigidbody2D>();
-        healthText = (Text) GameObject.Find("healthText");
+        healthText.text = "Health: " + health.ToString();
     }
 
     // Update is called once per frame (however often that is)
@@ -112,6 +112,6 @@ public class PlayerController : MonoBehaviour
         // just self destruct the enemy
         Destroy(other.gameObject);
       }
-      healthText.text = health.ToString();
+      healthText.text = "Health: " + health.ToString();
     }
 }
