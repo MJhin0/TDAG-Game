@@ -19,6 +19,7 @@ public class Enemy2Behavior : MonoBehaviour {
     public Transform firingPoint;
     public GameObject bulletPrefab; */
 
+    private const float BULLET_DAMAGE = 1f;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,6 +36,19 @@ public class Enemy2Behavior : MonoBehaviour {
         /*if (distance >= distanceToShoot) {
             Shoot();
         } */
+    }
+
+    /*
+      * When the enemy collides with a bullet, it takes damage
+      */
+    void OnCollisionEnter2D(Collision2D collision) {
+      Debug.Log("Collision with " + collision.gameObject.tag);
+        if (collision.gameObject.tag == "Projectile") {
+            health -= BULLET_DAMAGE;
+            if (health <= 0) {
+                Destroy(gameObject);
+            }
+        }
     }
 
 /*    private void Shoot() {
