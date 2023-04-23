@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 480251768}
   m_Layer: 0
   m_Name: Enemy2
-  m_TagString: Respawn
+  m_TagString: Enemy
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 949194663}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -576,6 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  health: 100
   bullet: {fileID: 391159395145778618, guid: ec5f927eafca9c44e87de625f12f7208, type: 3}
   launchOffset: {fileID: 1049347776}
 --- !u!58 &1110929907
@@ -707,7 +708,7 @@ GameObject:
   - component: {fileID: 1436890831}
   m_Layer: 1
   m_Name: Enemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
