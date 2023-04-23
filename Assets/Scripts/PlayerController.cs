@@ -53,9 +53,9 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update(){
-        if(Input.GetButtonDown("Fire1")){
-            Instantiate(bullet, launchOffset.position, transform.rotation * Quaternion.Euler(0, 0, -90));
-        }
+      if(Input.GetButtonDown("Fire1")){
+          Instantiate(bullet, launchOffset.position, transform.rotation * Quaternion.Euler(0, 0, -90));
+      }
     }
 
     // Unity create a detect collision method
@@ -88,5 +88,5 @@ public class PlayerController : MonoBehaviour
         // just self destruct the enemy
         Destroy(other.gameObject);
       }
-    } 
+    }
 }
