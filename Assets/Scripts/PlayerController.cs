@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 10f;
+
+    public float dashCooldown = 0;
 
     public float health = 100f;
 
@@ -21,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float invincibilityTime = 2.5f;
 
     // constant damage taken from enemy collision
-    const float damageFromEnemy = 20f;
+    const float damageFromEnemy = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,16 @@ public class PlayerController : MonoBehaviour
          transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
         rBody.position = rBody.position + new Vector2(horizontalIn, verticalIn) * speed * Time.fixedDeltaTime;
+        
+        //Dash updating
+        if(dashCooldown > 0){
+          dashCooldown -= (float) 0.05;
+          speed = dashCooldown * 10f + 10f;
+        }
+        else{
+          speed = 10f;
+          dashCooldown = 0;
+        }
 
         // if just took damage and time is greater than invincibility time
         if(isInvincible && Time.time - justTookDamageTime > invincibilityTime) {
@@ -53,9 +66,15 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update(){
-      if(Input.GetButtonDown("Fire1")){
-          Instantiate(bullet, launchOffset.position, transform.rotation * Quaternion.Euler(0, 0, -90));
-      }
+        //Fire bullet
+        if(Input.GetButtonDown("Fire1")){
+            Instantiate(bullet, launchOffset.position, transform.rotation * Quaternion.Euler(0, 0, -90));
+        }
+        //Start dash
+        if(Input.GetButtonDown("Fire2") && dashCooldown <= 0){
+            speed = (float) 15f;
+            dashCooldown = 1;
+        }
     }
 
     // Unity create a detect collision method
@@ -80,6 +99,7 @@ public class PlayerController : MonoBehaviour
         if(health <= 0f) {
           // TODO: handle player death
           Destroy(gameObject);
+          SceneManager.LoadScene(2);
         }
 
         // self destruct the enemy
