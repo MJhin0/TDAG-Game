@@ -12,12 +12,12 @@ public class Enemy2Behavior : MonoBehaviour {
     Transform target;
 
     public float distanceToStop = 3f;
-/*
+
     public float distanceToShoot = 5f;
-    public float fireRate;
+    public float fireRate = 0;
     private float timeToFire = 0;
-    public Transform firingPoint;
-    public GameObject bulletPrefab; */
+
+    public ProjectileBehavior bullet;
 
     private const float BULLET_DAMAGE = 1f;
 
@@ -36,6 +36,7 @@ public class Enemy2Behavior : MonoBehaviour {
         /*if (distance >= distanceToShoot) {
             Shoot();
         } */
+        Shoot();
     }
 
     /*
@@ -43,11 +44,35 @@ public class Enemy2Behavior : MonoBehaviour {
       */
     void OnCollisionEnter2D(Collision2D collision) {
       Debug.Log("Collision with " + collision.gameObject.tag);
-        if (collision.gameObject.tag == "Projectile") {
-            health -= BULLET_DAMAGE;
-            if (health <= 0) {
-                Destroy(gameObject);
-            }
+      if (collision.gameObject.tag == "Projectile") {
+          health -= BULLET_DAMAGE;
+          if (health <= 0) {
+              Destroy(gameObject);
+          }
+      }
+    }
+
+    /*
+      * Shoots a bullet at the player
+      */
+    void Shoot() {
+        if (timeToFire <= 0f) {
+            Debug.Log("Shooting");
+
+            // set rotation of bullet towards player
+            Vector3 difference = target.position - transform.position;
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+            // rotate z by 180 degrees
+            rotationZ += 180;
+
+            // shoot bullet
+            Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, rotationZ));
+
+            timeToFire = fireRate;
+        }
+        else {
+            timeToFire -= Time.deltaTime;
         }
     }
 

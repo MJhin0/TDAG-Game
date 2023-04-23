@@ -83,10 +83,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // self destruct the enemy
-        Destroy(other.gameObject);
+        // Destroy(other.gameObject);
       } else if (other.gameObject.tag == "Enemy" && isInvincible) {
         // just self destruct the enemy
-        Destroy(other.gameObject);
+        // Destroy(other.gameObject);
       }
     } 
 }

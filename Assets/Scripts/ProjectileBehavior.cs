@@ -7,6 +7,7 @@ public class ProjectileBehavior : MonoBehaviour
     public float speed = 5.0f;
     public float vertAngle;
     public float horizAngle;
+    public bool isEnemyProjectile = false;
 
     private Rigidbody2D rBody;
 
@@ -17,7 +18,9 @@ public class ProjectileBehavior : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision){
+      if (!isEnemyProjectile) {
         Destroy(gameObject);
+      }
     }
 
 }
