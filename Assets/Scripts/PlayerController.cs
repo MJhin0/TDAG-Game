@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float invincibilityTime = 2.5f;
 
     // constant damage taken from enemy collision
-    const float damageFromEnemy = 100f;
+    const float damageFromEnemy = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     // Unity create a detect collision method
     void OnCollisionEnter2D(Collision2D other){
       // check if it's an enemy and not invincible
-      if (other.gameObject.tag == "Enemy" && !isInvincible) {
+      if ((other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyProjectile") && !isInvincible) {
         // set invincible
         isInvincible = true;
 

@@ -20,6 +20,8 @@ public class ProjectileBehavior : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision){
       if (!isEnemyProjectile) {
         Destroy(gameObject);
+      }else if (collision.gameObject.tag != "Enemy"){
+        Destroy(gameObject);
       }
     }
 
