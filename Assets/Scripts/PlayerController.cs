@@ -6,11 +6,22 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
 
-    private Rigidbody2D rBody;
+    public float health = 100f;
 
+    private Rigidbody2D rBody;
 
     public ProjectileBehavior bullet;
     public Transform launchOffset;
+
+    // just took damage
+    private bool isInvincible = false;
+    // time when just took damage
+    private float justTookDamageTime = 0f;
+    // invincibility frame = 3 seconds
+    private float invincibilityTime = 2.5f;
+
+    // constant damage taken from enemy collision
+    const float damageFromEnemy = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +43,13 @@ public class PlayerController : MonoBehaviour
 
         rBody.position = rBody.position + new Vector2(horizontalIn, verticalIn) * speed * Time.fixedDeltaTime;
 
+        // if just took damage and time is greater than invincibility time
+        if(isInvincible && Time.time - justTookDamageTime > invincibilityTime) {
+          Debug.Log("Not invincible anymore");
+          isInvincible = false;
+          // set opacity back to normal
+          GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1.0f);
+        }
     }
 
     void Update(){
@@ -40,4 +58,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Unity create a detect collision method
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.tag == "Enemy") {
+          // set invincible
+          isInvincible = true;
+
+          // set opacity faded to indiciate invincibility
+          GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+
+          // mark time set invincible
+          justTookDamageTime = Time.time;
+
+          // subtract health
+          health -= damageFromEnemy;
+
+          Debug.Log("Health: " + health);
+
+          // handle player death
+          if(health <= 0f) {
+            // TODO: handle player death
+            Destroy(gameObject);
+          }
+
+          // self destruct the enemy
+          Destroy(other.gameObject);
+        }
+    }
 }
