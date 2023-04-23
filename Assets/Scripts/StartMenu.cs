@@ -9,4 +9,11 @@ public class StartMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        //Turns off the game in the editor
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
 }
