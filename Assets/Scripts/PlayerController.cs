@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 10f;
+
+    public float dashCooldown = 0;
 
     public float health = 100f;
 
@@ -43,6 +45,16 @@ public class PlayerController : MonoBehaviour
          transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
         rBody.position = rBody.position + new Vector2(horizontalIn, verticalIn) * speed * Time.fixedDeltaTime;
+        
+        //Dash updating
+        if(dashCooldown > 0){
+          dashCooldown -= (float) 0.05;
+          speed = dashCooldown * 10f + 10f;
+        }
+        else{
+          speed = 10f;
+          dashCooldown = 0;
+        }
 
         // if just took damage and time is greater than invincibility time
         if(isInvincible && Time.time - justTookDamageTime > invincibilityTime) {
@@ -54,8 +66,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update(){
+        //Fire bullet
         if(Input.GetButtonDown("Fire1")){
             Instantiate(bullet, launchOffset.position, transform.rotation * Quaternion.Euler(0, 0, -90));
+        }
+        //Start dash
+        if(Input.GetButtonDown("Fire2") && dashCooldown <= 0){
+            speed = (float) 15f;
+            dashCooldown = 1;
         }
     }
 
