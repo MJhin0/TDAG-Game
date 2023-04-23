@@ -227,6 +227,9 @@ MonoBehaviour:
   maxHealth: 3
   speed: 2
   distanceToStop: 3
+  distanceToShoot: 5
+  fireRate: 0
+  bullet: {fileID: 0}
 --- !u!61 &480251769
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -240,7 +243,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000023841858, y: -0.15271348}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -251,7 +254,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1}
+  m_Size: {x: 1.1335025, y: 0.69457304}
   m_EdgeRadius: 0
 --- !u!50 &480251770
 Rigidbody2D:
@@ -374,7 +377,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.008484364, y: -0.15271354}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -385,7 +388,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1}
+  m_Size: {x: 1.1504698, y: 0.6945729}
   m_EdgeRadius: 0
 --- !u!114 &949194662
 MonoBehaviour:
@@ -576,6 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  dashCooldown: 0
   health: 100
   bullet: {fileID: 391159395145778618, guid: ec5f927eafca9c44e87de625f12f7208, type: 3}
   launchOffset: {fileID: 1049347776}
@@ -957,7 +961,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15271342}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -968,7 +972,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.135745, y: 0.69457316}
   m_EdgeRadius: 0
 --- !u!1 &1437582751
 GameObject:
