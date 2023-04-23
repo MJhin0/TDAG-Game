@@ -14,7 +14,7 @@ public class Enemy2Behavior : MonoBehaviour {
     public float distanceToStop = 3f;
 
     public float distanceToShoot = 5f;
-    public float fireRate = 0;
+    public float fireRate = 1f;
     private float timeToFire = 0;
 
     public ProjectileBehavior bullet;

@@ -108,5 +108,5 @@ public class PlayerController : MonoBehaviour
         // just self destruct the enemy
         Destroy(other.gameObject);
       }
-    } 
+    }
 }
