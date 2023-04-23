@@ -60,29 +60,33 @@ public class PlayerController : MonoBehaviour
 
     // Unity create a detect collision method
     void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.tag == "Enemy") {
-          // set invincible
-          isInvincible = true;
+      // check if it's an enemy and not invincible
+      if (other.gameObject.tag == "Enemy" && !isInvincible) {
+        // set invincible
+        isInvincible = true;
 
-          // set opacity faded to indiciate invincibility
-          GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+        // set opacity faded to indiciate invincibility
+        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
 
-          // mark time set invincible
-          justTookDamageTime = Time.time;
+        // mark time set invincible
+        justTookDamageTime = Time.time;
 
-          // subtract health
-          health -= damageFromEnemy;
+        // subtract health
+        health -= damageFromEnemy;
 
-          Debug.Log("Health: " + health);
+        Debug.Log("Health: " + health);
 
-          // handle player death
-          if(health <= 0f) {
-            // TODO: handle player death
-            Destroy(gameObject);
-          }
-
-          // self destruct the enemy
-          Destroy(other.gameObject);
+        // handle player death
+        if(health <= 0f) {
+          // TODO: handle player death
+          Destroy(gameObject);
         }
-    }
+
+        // self destruct the enemy
+        Destroy(other.gameObject);
+      } else if (other.gameObject.tag == "Enemy" && isInvincible) {
+        // just self destruct the enemy
+        Destroy(other.gameObject);
+      }
+    } 
 }
