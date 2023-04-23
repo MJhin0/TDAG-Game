@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10f;
+
+    public Text healthText;
 
     public float dashCooldown = 0;
 
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         // Able to controller UFO's Rigidbody
         rBody = GetComponent<Rigidbody2D>();
+        healthText = (Text) GameObject.Find("healthText");
     }
 
     // Update is called once per frame (however often that is)
@@ -108,5 +112,6 @@ public class PlayerController : MonoBehaviour
         // just self destruct the enemy
         Destroy(other.gameObject);
       }
+      healthText.text = health.ToString();
     }
 }
