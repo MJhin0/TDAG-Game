@@ -19,6 +19,6 @@ public class EndMenu : MonoBehaviour
     {
         Application.Quit();
         //Turns off the game in the editor
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
